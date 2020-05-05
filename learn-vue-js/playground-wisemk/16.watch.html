@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <div>{{num}}</div>
+        <button v-on:click="addNum">increase</button>
+    </div>
+    
+    <script>
+        new Vue({
+            el:'#app',
+            data:{
+                num:10
+            },
+            //num값이 바뀌면 logText함수를 호출시키고 싶을때,
+            //즉, 데이터가 바뀐것을 감지하면 어떠한 동작을 수행할 수 있도록 도와주는 뷰의 속성이 watch이다.
+            watch:{
+                num: function(){
+                    this.logText();
+                }
+            }, 
+            methods:{
+                addNum:function(){
+                    this.num = this.num + 1;
+                },
+                logText:function(){
+                    console.log('changed')
+                }
+            }
+        })
+    </script>
+</body>
+</html>

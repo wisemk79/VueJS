@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<!-- TODO: 인풋박스를 만들고 입력된 값을 p 태그에 출력해보세요 -->
+<body>
+    <div id="app">
+
+        <div>
+            <!-- v-model을 통해 뷰의 데이터와 연결시켜줄수 있다. -->
+            <input type="text" v-model='message'>
+            <p>{{message}}</p>
+        </div>
+    </div>
+
+    <script>
+        new Vue({
+            el:'#app',
+            data:{
+                num:10,
+                //uuid값을 태그의 id에 넣어준다
+                uuid: 'abc1234',
+                name: 'text-blue',
+                loading: true,
+                message:''
+            },
+            //데이터의 값에 따라바뀌는 값을 정의할때 사용하는 속성
+            computed:{
+                doubleNum: function(){
+                    //정의된 num값에 곱하기2를하여 리턴하라
+                    return this.num*2;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

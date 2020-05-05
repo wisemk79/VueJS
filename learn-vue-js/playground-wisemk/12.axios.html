@@ -24,10 +24,11 @@
       },
       methods: {
         getData: function() { 
+          var vm = this;
           axios.get('https://jsonplaceholder.typicode.com/users/')
             .then(function(response) {
-              console.log(response.data);//여기서는 데이터를 가져오는 것인데,
-              this.users = response.data;//뷰에 data로 정의되어있는 users를 지칭하는 this.users를 이용하여 데이터에 넣어준다.
+              console.log(response.data);
+              vm.users = response.data;
             })
             .catch(function(error) {
               console.log(error);

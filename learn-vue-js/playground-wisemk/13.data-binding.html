@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- v-bind:id 속성은 뷰 객체에있는 값이랑 바인딩해준다 -->
+        <p v-bind:id="uuid" v-bind:class="name">{{num}}</p>
+        <!-- <p id="uuid" class="name">{{num}}</p> 와 같다-->
+        <!-- <p>{{doubleNum}}</p> -->   
+
+        <!-- v-if v-else 는 boolean값을 받는데, 기존 if문과 다르지 않다. 
+            근데 여기서 중요한것은 v-if는 false가 되면 해당 태그 자체가 없어지는 것인데,
+            v-show는 해당 태그가 없어지는 것이 아닌 육안상으로만 사라지고 태그는 남아있는
+            display:none 상태가된다. 
+        -->
+        <div v-if="loading">
+            Loading..
+        </div>
+        <div v-else>
+            test user has been logged in
+        </div>
+        <div v-show="loading">
+            Loading...
+        </div>
+    </div>
+
+    <script>
+        new Vue({
+            el:'#app',
+            data:{
+                num:10,
+                //uuid값을 태그의 id에 넣어준다
+                uuid: 'abc1234',
+                name: 'text-blue',
+                loading: true
+            },
+            //데이터의 값에 따라바뀌는 값을 정의할때 사용하는 속성
+            computed:{
+                doubleNum: function(){
+                    //정의된 num값에 곱하기2를하여 리턴하라
+                    return this.num*2;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <div>
+            <router-link to="/login">Login</router-link>
+            <router-link to="/main">main</router-link>
+        </div>
+        <!-- url에서 뿌려지는 영역을 뷰 라우터에서 가지고 있는 태그인 router-view를 사용한다  -->
+        <router-view></router-view>
+    </div>
+
+    <script>
+        const LoginComponent = {
+            template: `<div>login</div>`
+        }
+
+        const MainComonent = {
+            template: `<div>main</div>`
+        }
+
+        const router = new VueRouter({
+            mode: 'history',//이 속성을 넣게되면 url상에 #(해쉬)값이 사라진다.
+            //routes는 페이지의 라우팅 정보가 들어간다.(배열로 담긴다)<-- 페이지의 갯수만큼 구조(객체를 배열에 만듬)를 잡는다.
+            routes: [
+                //로그인 페이지 정보
+                {
+                    //페이지의 url이름
+                    path: '/login',
+                    //해당 url에서 표시될 컴포넌트
+                    component: LoginComponent
+                },
+                //메인페이지 정보
+                {
+                    path: '/main',
+                    component: MainComonent
+                }
+            ]
+        });
+
+        //뷰 내부적으로 router라는 속성이 있다. 
+        //그 속성에 위에서 생성한 라우터 객체를 넣어주면된다. <--넣어주고 vue developer tool를 보게되면
+        //$route라는 속성이 있다는 것을 볼 수 있다.
+        new Vue({
+            el:'#app',
+            router: router,
+        });
+    </script>
+</body>
+</html>
