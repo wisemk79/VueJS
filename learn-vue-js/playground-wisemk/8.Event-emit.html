@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+        <div id="app">
+            <!-- <app-header v-on:하위 컴포넌트에서 발생한 이벤트 이름="상위 컴포넌트의 메서드 이름"></app-header>
+            하위 컴포넌트에서 발생한 이벤트의 이름은 하위컴포넌트에서 만들어준 메서드 passEvent의 
+            function안에서 선언해준 this.$emit('pass');에서 이벤트명으로 넣어준 pass를 넣어준다
+            -->
+            <div style="padding-left: 3rem; border: 1px solid black; width: 5rem;">{{num}}</div>
+            <app-header v-on:pass="logText"></app-header>
+            <app-content v-on:increase="increaseNum"></app-content>
+        </div>
+
+        <script>
+            let appHeader = {
+                template:'<button v-on:click="passEvent">Click me</button>',
+                methods: {
+                    passEvent: function(){//vue develop tool에서 event 탭에가면 이벤트 이력을 확인할 수 있다. 
+                        this.$emit('pass');
+                    }
+                },
+            }
+
+
+            let appContent = {
+                template: '<button v-on:click="addNumber">add</button>',
+                methods:{
+                    addNumber: function(){
+                        //this.$emit('이벤트명');
+                        this.$emit("increase");
+                    }
+                }
+            }
+            
+            new Vue({
+                el:'#app',
+                components:{
+                    'app-header': appHeader,
+                    'app-content': appContent
+                },
+                methods:{
+                    logText:function(){
+                        console.log('hi')
+                    },
+                    increaseNum:function(){
+                        //메서드에서의 this는 해당 객체의 data를 바라보고 있다.
+                        ++this.num;
+                    }
+                },
+                data:{
+                    num:10
+                }
+            });
+        </script>
+</body>
+</html>

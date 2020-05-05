@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- props 전달 방법 형식
+            <app-header v-bind:프롭스 속성 이름="상위 컴포넌트 데이터 이름"></app-header>
+        -->
+        <app-header v-bind:propsdata="message"></app-header>
+        <app-content v-bind:number="num"></app-content>
+    </div>
+
+    <script>
+
+        let appHeader = { 
+            template : '<h1>{{propsdata}}</h1>',
+            props: ['propsdata']
+        }
+        let appContent = {
+            template : '<div>{{number}}</div>',
+            props: ['number']
+        }
+
+        new Vue({
+            el:'#app',
+            components:{
+                'app-header': appHeader,
+                'app-content': appContent
+            },
+            data: {//Root Component(부모 컴포넌트에서 관리하는 데이터)
+                message:'hi',
+                num:10
+            }
+        })
+    </script>
+</body>
+</html>

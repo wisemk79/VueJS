@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getting Started</title>
+  </head>
+  <body>
+    <div id="app">
+      {{ message }}
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+      new Vue({
+        el: '#app',
+        data: {
+          //이 아래에 있는 메세지가 변하면 바로 적용되는데 이것은 위의 div에 meassage에서 실행되는것이다.
+          message: 'Hello Vue.js'
+        }
+      })
+    </script>
+  </body>
+</html>

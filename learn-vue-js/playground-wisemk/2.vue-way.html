@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+
+    <script>
+        //아래의코드는 Reactivity(자동으로 dom에 그려지는것) 라이브러리화 하는과정이다.
+        const div = document.querySelector('#app');
+        let viewModel = {};
+
+        //Object.defineProperty(대상객체, 객체의 속성, {정의내용})
+        //즉시 실행 함수 표현(IIFE, Immediately Invoked Function Expression)은 정의되자마자 즉시 실행되는 Javascript Function 
+        (function(){
+            function init(){
+                Object.defineProperty(viewModel, 'str',{
+                    //속성에 접근했을때 동작을 정의
+                    get: function(){
+                        console.log('접근');
+                    },
+                    //속성에 값을 할당했을때 동작을 정의
+                    set: function(newValue){
+                        console.log('할당',newValue);
+                        render(newValue)
+                    }
+                });
+            }
+    
+            function render(value){
+                div.innerHTML = value;
+            }
+    
+            init();
+        })();
+
+    </script>
+    
+</body>
+</html>

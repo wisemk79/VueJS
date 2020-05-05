@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    
+    <div id="app">
+        {{message}}
+    </div>
+
+    <script>
+        //기본 생성자함수
+        function Person(name, job){
+            this.name = name;
+            this.job = job;
+        }
+
+        var p = new Person('nate', 'developer')
+
+        let vm = new Vue({//생성자안에 직접 객체를 넣어주는것(객체 리터럴)
+            el: '#app',
+            data: {
+                message: 'hi'
+            },
+            method:{
+
+            },
+            created:{
+
+            }
+        });
+    </script>
+
+</body>
+</html>
